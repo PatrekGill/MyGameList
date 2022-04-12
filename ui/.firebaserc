@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "my-game-list-41bd5": {
+      "hosting": {
+        "ui": [
+          "my-game-list-41bd5"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "my-game-list-41bd5"
+  }
+}

@@ -98,6 +98,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "ui:build:production",
+            "firebaseProject": "my-game-list-41bd5",
+            "firebaseHostingSite": "my-game-list-41bd5"
+          }
         }
       }
     }
