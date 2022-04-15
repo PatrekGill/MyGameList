@@ -1,5 +1,5 @@
-const gql = require("graphql-tag");
-const { makeExecutableSchema } = require("@graphql-tools/schema");
+import gql from "graphql-tag";
+import { makeExecutableSchema } from "@graphql-tools/schema";
 
 // This is a (sample) collection of books we'll be able to query
 // the GraphQL server for.  A more complete example might fetch
@@ -46,7 +46,7 @@ module.exports = {
     }),
     // Bonus function, to remove stack trace on production
     // https://www.apollographql.com/docs/apollo-server/features/errors
-    formatError: (error) => {
+    formatError: (error: any) => {
         if (process.env.NODE_ENV === "production") {
             delete error.extensions.exception;
         }
