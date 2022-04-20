@@ -1,41 +1,57 @@
-import gql from "graphql-tag";
 import { makeExecutableSchema } from "@graphql-tools/schema";
+import { gql } from "apollo-server";
 
-// This is a (sample) collection of books we'll be able to query
-// the GraphQL server for.  A more complete example might fetch
-// from an existing data source like a REST API or database.
-const books = [
+// import * as admin from "firebase-admin";
+// const serviceAccount = require("../../../service-account.json");
+// admin.initializeApp({
+//     credential: admin.credential.cert(serviceAccount),
+//     databaseURL: "https://my-game-list-41bd5.firebaseio.com",
+// });
+
+// databaseURL: "https://my-game-list-41bd5.firebaseio.com",
+
+const games = [
     {
-        title: "Harry Potter and the Chamber of Secrets",
-        author: "J.K. Rowling",
+        id: 1,
+        title: "Mass Effect",
     },
     {
-        title: "Jurassic Park",
-        author: "Michael Crichton",
+        id: 2,
+        title: "Mass Effect 2",
+    },
+    {
+        id: 3,
+        title: "Mass Effect 3",
     },
 ];
+
+interface Game {
+    id: number;
+    title: String;
+}
 
 // Type definitions define the "shape" of your data and specify
 // which ways the data can be fetched from the GraphQL server.
 const typeDefs = gql`
-    # Comments in GraphQL are defined with the hash (#) symbol.
-    # This "Book" type can be used in other type declarations.
-    type Book {
+    type Game {
+        id: Int
         title: String
-        author: String
     }
-    # The "Query" type is the root of all GraphQL queries.
-    # (A "Mutation" type will be covered later on.)
     type Query {
-        books: [Book]
+        games: [Game]
     }
 `;
+
+// const games = async () => {
+//     const games = await admin.firestore().collection("games").get();
+//     return games.docs.map((game) => game.data()) as Game[];
+// };
 
 // Resolvers define the technique for fetching the types in the
 // schema.  We'll retrieve books from the "books" array above.
 const resolvers = {
     Query: {
-        books: () => books,
+        games: () => games,
     },
 };
 
