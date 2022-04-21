@@ -65,4 +65,5 @@ node_modules/
 # dotenv environment variables file
 .env
 
+# files to keep from source control
 private/
