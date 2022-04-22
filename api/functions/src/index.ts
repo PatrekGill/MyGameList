@@ -27,6 +27,7 @@ exports.graphql = async function (event, context, next) {
 };
 */
 
+
 const server = new ApolloServer(schema);
 const cors = {
     origin: true,
@@ -42,6 +43,7 @@ exports.graphql = functions.https.onRequest(
     	return apolloHandler(req,resp,() => {});
 	}
 );
+
 
 /*
 const server = new ApolloServer(schema);

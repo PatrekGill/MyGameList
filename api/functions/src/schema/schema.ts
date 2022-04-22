@@ -1,29 +1,31 @@
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { gql } from "apollo-server";
+import * as admin from "firebase-admin";
+import {getFirestore} from "firebase-admin/firestore";
+import * as logger from "firebase-functions/logger";
 
-// import * as admin from "firebase-admin";
-// const serviceAccount = require("../../../service-account.json");
-// admin.initializeApp({
-//     credential: admin.credential.cert(serviceAccount),
-//     databaseURL: "https://my-game-list-41bd5.firebaseio.com",
-// });
+process.env.FIRESTORE_EMULATOR_HOST = 'localhost:8080';
+const serviceAccount = require("../../private/service-account.json");
+const app = admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://my-game-list-41bd5.firebaseio.com",
+});
 
-// databaseURL: "https://my-game-list-41bd5.firebaseio.com",
-
-const games = [
-    {
-        id: 1,
-        title: "Mass Effect",
-    },
-    {
-        id: 2,
-        title: "Mass Effect 2",
-    },
-    {
-        id: 3,
-        title: "Mass Effect 3",
-    },
-];
+const firestore = getFirestore(app);
+// const games = [
+//     {
+//         id: 1,
+//         title: "Mass Effect",
+//     },
+//     {
+//         id: 2,
+//         title: "Mass Effect 2",
+//     },
+//     {
+//         id: 3,
+//         title: "Mass Effect 3",
+//     },
+// ];
 
 interface Game {
     id: number;
@@ -51,7 +53,11 @@ const typeDefs = gql`
 // schema.  We'll retrieve books from the "books" array above.
 const resolvers = {
     Query: {
-        games: () => games,
+        // games: () => games,
+		games: async () => {
+			const collection = firestore.collection("games").get();
+			return (await collection).docs.map(game => game.data());
+		}	
     },
 };
 
