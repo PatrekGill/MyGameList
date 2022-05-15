@@ -3,7 +3,7 @@
   "scripts": {
     "build": "tsc",
 	"serve-functions": "npm run build && firebase emulators:start --only functions",
-    "serve": "npm run build && firebase emulators:start",
+    "serve": "npm run build && firebase emulators:start --import ../Not-Source-Controlled/Firestore-Data",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",

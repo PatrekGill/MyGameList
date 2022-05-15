@@ -67,3 +67,5 @@ node_modules/
 
 # files to keep from source control
 private/
+
+Not-Source-Controlled/
