@@ -1,7 +1,6 @@
 import * as functions from "firebase-functions";
-import * as admin from "firebase-admin";
-import {getFirestore} from "firebase-admin/firestore";
 import { ApolloServer } from "apollo-server-cloud-functions";
+const { app } = require("./app");
 const {getSchema} = require("./schema/schema");
 
 // // Start writing Firebase Functions
@@ -27,14 +26,7 @@ exports.graphql = async function (event, context, next) {
     return apolloHandler(event, context, next);
 };
 */
-const main = () => {
-	process.env.FIRESTORE_EMULATOR_HOST = 'localhost:8080';
-	const serviceAccount = require("../private/service-account.json");
-	const app = admin.initializeApp({
-		credential: admin.credential.cert(serviceAccount),
-		databaseURL: "https://my-game-list-41bd5.firebaseio.com",
-	});
-	
+const main = () => {	
 	const schema = getSchema(app);
 	const server = new ApolloServer(schema);
 	const cors = {
