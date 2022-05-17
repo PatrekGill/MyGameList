@@ -1,13 +1,15 @@
 {
     "compilerOptions": {
         "lib": ["es6", "dom", "esnext.asynciterable"],
-        "module": "commonjs",
+        "module": "es2020",
         "noImplicitReturns": false,
         "outDir": "lib",
         "sourceMap": true,
         "allowSyntheticDefaultImports": true,
-        "target": "es2017"
+		"moduleResolution": "node",
+        "target": "es2020"
     },
     "compileOnSave": true,
-    "include": ["src"]
+    "include": ["src"],
+	"exclude": ["src/local-server"]
 }
