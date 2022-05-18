@@ -1,4 +1,4 @@
-import { fireStore } from "../../app.js";
+import { fireStore } from "../../../app.js";
 
 export const resolvers = {
 	Query: {

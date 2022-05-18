@@ -27,7 +27,7 @@ exports.graphql = async function (event, context, next) {
 };
 */
 
-const schema = getSchema(app);
+const schema = await getSchema(app);
 const server = new ApolloServer(schema);
 const cors = {
 	origin: true,

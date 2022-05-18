@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "lib": ["es6", "dom", "esnext.asynciterable"],
-        "module": "es2020",
+        "module": "es2022",
         "noImplicitReturns": false,
         "outDir": "lib",
         "sourceMap": true,

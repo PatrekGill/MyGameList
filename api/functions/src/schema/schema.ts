@@ -2,6 +2,8 @@ import { makeExecutableSchema } from "@graphql-tools/schema";
 import { gql } from "apollo-server";
 import { getFirestore } from "firebase-admin/firestore";
 import { App } from "firebase-admin/app";
+import fs from "fs";
+import path from "path";
 
 
 // const games = [
@@ -34,24 +36,35 @@ interface Game {
 
 // Resolvers define the technique for fetching the types in the
 // schema.  We'll retrieve books from the "books" array above.
-
 const buildSchemaFromFiles = async () => {
-	import("./Game/Game.resolvers.js").then(obj => {
-		console.log(obj);
-	});
-	
-	return {
+	let schema = {
+		resolvers: {},
+
 	};
+	
+	const relativePath = "lib/schema/interfaces";
+	let folderPath = path.resolve(relativePath);
+	const folderNames = fs.readdirSync(folderPath);
+	
+	for (const folderName of folderNames) {
+		const importPath = `./interfaces/${folderName}/${folderName}.resolvers.js`;
+		// console.log(importPath);
+		
+		const imported = await import(importPath);
+		if (imported["resolvers"]) {
+			console.log("imported");
+			
+			console.log(imported.resolvers);
+			Object.assign(schema.resolvers,imported.resolvers);
+		}
+	}
+
+	return schema;
 };
 
-export const getSchema = (app: App) => {
-	try {
-		const schema = buildSchemaFromFiles();
-		console.log(schema);
-		
-	} catch (error) {
-		console.error(error);
-	}
+export const getSchema = async (app: App) => {
+	const schema = await buildSchemaFromFiles();
+	console.log(schema);
 	
 	const fireStore = getFirestore(app);
 	
