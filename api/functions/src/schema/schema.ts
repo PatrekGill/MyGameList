@@ -31,7 +31,7 @@ const buildSchemaFromFiles = async () => {
 	const folderNames = fs.readdirSync(folderPath);
 	
 	for (const folderName of folderNames) {
-		const importPath = `./interfaces/${folderName}/${folderName}.resolvers.js`;
+		const importPath = `./interfaces/${folderName}/${folderName}.graphql.js`;
 		
 		const importedFile = await import(importPath);
 		const importedResolvers: undefined | Object = importedFile["resolvers"];

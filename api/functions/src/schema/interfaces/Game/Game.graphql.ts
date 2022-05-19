@@ -18,7 +18,15 @@ export const resolvers = {
 		// games: () => games,
 		games: async () => {
 			const collection = fireStore.collection("games").get();
-			return (await collection).docs.map(game => game.data());
+			return (await collection).docs.map(game => {
+				functions.logger.log("Game Id");
+				functions.logger.log(game.id);
+				
+				return {
+					id: game.id,
+					...game.data()
+				}
+			});
 		}	
 	},
 };
