@@ -21,13 +21,13 @@ interface Game {
 // Resolvers define the technique for fetching the types in the
 // schema.  We'll retrieve books from the "books" array above.
 const buildSchemaFromFiles = async () => {
-	let schema = {
+	const schema = {
 		resolvers: {},
 		typeDefs: [],
 	};
 	
 	const relativePath = "lib/schema/interfaces";
-	let folderPath = path.resolve(relativePath);
+	const folderPath = path.resolve(relativePath);
 	const folderNames = fs.readdirSync(folderPath);
 	
 	for (const folderName of folderNames) {

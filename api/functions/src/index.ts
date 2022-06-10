@@ -11,22 +11,6 @@ import { getSchema } from "./schema/schema.js";
 //   response.send("Hello from Firebase!");
 // });
 
-/*
-const server = new ApolloServer(schema);
-const cors = {
-    origin: true,
-    credentials: true,
-};
-
-const apolloHandler = server.createHandler({
-    expressGetMiddlewareOptions: { cors },
-});
-
-exports.graphql = async function (event, context, next) {
-    return apolloHandler(event, context, next);
-};
-*/
-
 const schema = await getSchema(app);
 const server = new ApolloServer(schema);
 const cors = {
