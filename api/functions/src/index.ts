@@ -1,6 +1,5 @@
 import functions from "firebase-functions";
 import { ApolloServer } from "apollo-server-cloud-functions";
-import { app } from "./app.js";
 import { getSchema } from "./schema/schema.js";
 
 // // Start writing Firebase Functions
@@ -11,7 +10,7 @@ import { getSchema } from "./schema/schema.js";
 //   response.send("Hello from Firebase!");
 // });
 
-const schema = await getSchema(app);
+const schema = await getSchema();
 const server = new ApolloServer(schema);
 const cors = {
 	origin: true,

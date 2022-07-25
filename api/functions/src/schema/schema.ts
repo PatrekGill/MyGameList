@@ -1,5 +1,4 @@
 import { makeExecutableSchema } from "@graphql-tools/schema";
-import { App } from "firebase-admin/app";
 import fs from "fs";
 import path from "path";
 import { DocumentNode } from "graphql";
@@ -52,7 +51,7 @@ const buildSchemaFromFiles = async () => {
 	return schema;
 };
 
-export const getSchema = async (app: App) => {
+export const getSchema = async () => {
 	const schema = await buildSchemaFromFiles();
 
 	return {

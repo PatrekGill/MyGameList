@@ -7,6 +7,7 @@
         "serve-functions": "npm run build && firebase emulators:start --only functions",
         "serve": "npm run build && firebase emulators:start --import ../Not-Source-Controlled/Firestore-Data",
 		"export:emulator": "firebase emulators:export",
+		"export:emulator-firestore": "firebase emulators:export ../Not-source-controlled/firestore-data",
         "shell": "npm run build && firebase functions:shell",
         "start": "npm run shell",
         "deploy": "firebase deploy --only functions",
