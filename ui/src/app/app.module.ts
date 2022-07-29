@@ -9,10 +9,12 @@ import { provideAnalytics,getAnalytics,ScreenTrackingService,UserTrackingService
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideMessaging,getMessaging } from '@angular/fire/messaging';
+import { GraphComponent } from './components/graph/graph.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GraphComponent
   ],
   imports: [
     BrowserModule,
